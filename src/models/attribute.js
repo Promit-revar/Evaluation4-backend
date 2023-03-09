@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     attributeId:{
       primaryKey:true,
       allowNull:false,
+      defaultValue:DataTypes.UUIDV4,
       type:DataTypes.UUID
     } 
   }, {

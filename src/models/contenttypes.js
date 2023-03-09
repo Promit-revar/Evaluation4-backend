@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     contentId:{
       type:DataTypes.UUID,
       primaryKey:true,
-      defaultValue:DataTypes.UUID
+      defaultValue:DataTypes.UUIDV4
     }
   }, {
     sequelize,

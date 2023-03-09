@@ -19,9 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.UUID,
     },
     collectionId:{
+      type:DataTypes.UUID,
       primaryKey:true,
-      allowNull:false,
-      type:DataTypes.UUID
+      defaultValue:DataTypes.UUIDV4
     }, 
     data: DataTypes.JSONB
   }, {

@@ -1,6 +1,6 @@
 const db = require('../models');
+const attribute = require('../models/attribute');
 exports.getAllDataByContentId = async(contentId) => {
-    try{
         const data = await db.ContentTypes.findOne({
             where:{
                 contentId:contentId
@@ -11,17 +11,26 @@ exports.getAllDataByContentId = async(contentId) => {
             }
         });
         return data;
-    }
-    catch(error){
-        throw error;
-    }
 }
-exports.setDataForContentId = async(data) => {
-    try{
-        const result = await db.collection.create(data);
+exports.setDataForContentId = async(data,contentId) => {
+        const attributes = await db.Attribute.findAll({
+            where:{
+                contentTypeId:contentId
+            }
+        });
+        attributes.forEach(attribute => {
+            if(!data[attribute.name]){
+                data[attribute.name] = null;
+            }
+            else if(data[attribute.name] && typeof(data[attribute.name]) !== attribute.type)
+            {
+                throw new Error(`Attribute ${attribute.name} should be of type ${attribute.type}`);
+            }
+        });
+        //console.log(data)
+        const result = await db.collection.create({
+            data:data,
+            contentTypeId:contentId,
+        });
         return result;
-    }
-    catch(error){
-        throw error;
-    }
 }
