@@ -56,3 +56,46 @@ exports.updateContentType = async(req,res) => {
         }
     }
 }
+exports.updateAttribute = async(req,res) => {
+    try{
+        const result = await dataServices.updateAttribute(req.body,req.params.attributeId,req.params.contentId);
+        if(result[0] > 0){
+        res.status(201).json({success:true});
+        }
+        else{
+            res.status(404).json({error:"Data Not Found",success:false});
+        }
+    }
+    catch(error){
+        if(error.message.search("invalid input"))
+        {
+            res.status(400).json({error:error.message,success:false});
+        }
+        else{
+        res.status(500).json({error:error.message,success:false});
+        }
+    }
+}
+exports.deleteAttribute = async(req,res) => {
+    try{
+        const result = await dataServices.deleteAttribute(req.params.attributeId,req.params.contentId);
+        if(result > 0){
+            res.status(200).json({success:true});
+        }
+        else{
+            res.status(404).json({error:"Data Not Found",success:false});
+        }
+    }
+    catch(error){
+        res.status(500).json(error);
+    }
+}
+exports.getAllContentTypes = async(req,res) => {
+    try{
+        const result = await dataServices.getAllContentTypes();
+        res.status(200).json(result);
+    }
+    catch(error){
+        res.status(500).json(error);
+    }
+}
