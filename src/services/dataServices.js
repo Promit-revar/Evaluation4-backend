@@ -27,10 +27,31 @@ exports.setDataForContentId = async(data,contentId) => {
                 throw new Error(`Attribute ${attribute.name} should be of type ${attribute.type}`);
             }
         });
-        //console.log(data)
         const result = await db.collection.create({
             data:data,
             contentTypeId:contentId,
+        });
+        return result;
+}
+exports.createContentType = async(data) => {
+        const result = await db.ContentTypes.create({
+            name:data.name
+        });
+        return result;
+}
+exports.createAttribute = async(data,contentTypeId) => {
+        const result = await db.Attribute.create({
+            name:data.name,
+            type:data.type,
+            contentTypeId:contentTypeId
+        });
+        return result;
+}
+exports.updateContentType = async(data,contentId) => {
+        const result = await db.ContentTypes.update(data,{
+            where:{
+                contentId:contentId
+            }
         });
         return result;
 }
