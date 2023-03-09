@@ -2,14 +2,14 @@ module.exports ={
   development: {
     "username": process.env.BACKEND_DB_USERNAME,
     "password": process.env.BACKEND_DB_PASSWORD,
-    "database": process.env.BACKEND_DATABASE,
+    "database": "postgres3",
     "host": process.env.BACKEND_HOST,     
     "dialect": "postgres"
   },
   test: {
     "username": process.env.BACKEND_DB_USERNAME,
     "password": process.env.BACKEND_DB_PASSWORD,
-    "database": process.env.BACKEND_DATABASE,
+    "database": "postgres3",
     "host": process.env.BACKEND_HOST,     
     "dialect": "postgres"
   },
