@@ -77,13 +77,40 @@ exports.updateContentType = async(data,contentId) => {
         });
         return result;
 }
-exports.updateAttribute = async(data,attributeId) => {
+exports.updateAttribute = async(data,attributeId,contentId) => {
+        console.log(contentId);
+        const previousAttribute = await db.Attribute.findOne({
+            where:{
+                attributeId:attributeId
+            }   
+        });
+       //console.log(previousAttribute)
+        const records = await db.collection.findAll({
+            where:{
+                contentTypeId:contentId
+            }
+        });
         const result = await db.Attribute.update(data,{
             where:{
                 attributeId:attributeId
             }
         });
+        //console.log(records);
+        records.forEach(async record => {
+            record.data[data.name] = record.data[previousAttribute.name];
+            delete record.data[previousAttribute.name];
+            await db.collection.update({
+                data:{
+                    ...record.data
+                    }
+                    },{
+                        where:{
+                            collectionId:record.collectionId
+                            }   
+                            });
+        });
         return result;
+
 }
 exports.deleteAttribute = async(attributeId) => {
         const result = await db.Attribute.destroy({

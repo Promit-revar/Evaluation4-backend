@@ -7,7 +7,7 @@ module.exports = {
      await queryInterface.bulkInsert('collections', [{
       contentTypeId: 'cc6fc2a0-be58-11ed-afa1-0242ac120002',
       collectionId: '9baafcba-be59-11ed-afa1-0242ac120002',
-      data:'{"name":"John Doe"}',
+      data:'{"Name":"John Doe"}',
       createdAt: new Date(),
       updatedAt: new Date()
      }], {});
