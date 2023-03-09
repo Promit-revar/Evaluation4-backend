@@ -84,7 +84,6 @@ exports.updateAttribute = async(data,attributeId,contentId) => {
                 attributeId:attributeId
             }   
         });
-       //console.log(previousAttribute)
         const records = await db.collection.findAll({
             where:{
                 contentTypeId:contentId
@@ -95,7 +94,6 @@ exports.updateAttribute = async(data,attributeId,contentId) => {
                 attributeId:attributeId
             }
         });
-        //console.log(records);
         records.forEach(async record => {
             record.data[data.name] = record.data[previousAttribute.name];
             delete record.data[previousAttribute.name];
@@ -123,5 +121,30 @@ exports.deleteAttribute = async(attributeId) => {
 }
 exports.getAllContentTypes = async() => {
         const result = await db.ContentTypes.findAll();
+        return result;
+}
+exports.updateDataForContentType = async(data,dataId) => {
+        const result = await db.collection.update({
+            data:data},{
+            where:{
+                collectionId:dataId
+            }
+        });
+        return result;
+}
+exports.deleteCollection = async(dataId) => {
+        const result = await db.collection.destroy({
+            where:{
+                collectionId:dataId
+            }
+        });
+        return result;
+}
+exports.getAttributesByContentId = async(contentId) => {
+        const result = await db.Attribute.findAll({
+            where:{
+                contentTypeId:contentId
+            }
+        });
         return result;
 }
