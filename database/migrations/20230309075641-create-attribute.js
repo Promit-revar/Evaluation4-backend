@@ -20,6 +20,7 @@ module.exports = {
       attributeId: {
         allowNull: false,
         primaryKey: true,
+        defaultValue: Sequelize.UUID,
         type: Sequelize.UUID
       },
       createdAt: {

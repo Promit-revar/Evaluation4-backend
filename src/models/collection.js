@@ -10,11 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.contenttypes,{
-        foreignKey:'contentTypeId',
-        targetKey:'contentId',
-        as:'contentTypes'
-      });
+      this.belongsTo(models.ContentTypes,{constraints:false,foreignKey:'contentTypeId',targetKey:'contentId',as:'contentTypes'});
     }
   }
   collection.init({
@@ -31,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'collection',
-    underscored: true,
   });
   return collection;
 };

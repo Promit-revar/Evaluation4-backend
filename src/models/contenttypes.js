@@ -15,10 +15,8 @@ module.exports = (sequelize, DataTypes) => {
         targetKey:'contentId',
         as:'attributes'
       });
-      this.hasMany(models.Collection,{
+      this.hasMany(models.collection,{
         foreignKey:'contentTypeId',
-        targetKey:'contentId',
-        as:'collections'
       });
     }
   }
@@ -32,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ContentTypes',
-    underscored:true,
   });
   return ContentTypes;
 };

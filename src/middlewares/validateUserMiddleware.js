@@ -1,6 +1,7 @@
+const Joi = require('joi');
 const {makeRequest} = require('../utils/makeRequest');
 const {verifyToken} = require('../constants/endpoints');
-exports.validateRequest = async(req,res,next) => {
+exports.authorizeRequest = async(req,res,next) => {
     try{
         const tokenVerification = await makeRequest(verifyToken,{headers:{authorization:req.headers.authorization}});
         console.log(tokenVerification);
@@ -15,4 +16,6 @@ exports.validateRequest = async(req,res,next) => {
         res.status(401).json({error:error.message,success:false});
 
     }
+}
+exports.validateRequest = (req,res,next) => {
 }
