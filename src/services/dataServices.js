@@ -1,5 +1,4 @@
-const db = require('../models');
-const attribute = require('../models/attribute');
+const db = require('../../src/models');
 exports.getAllDataByContentId = async(contentId) => {
         const data = await db.ContentTypes.findOne({
             where:{
@@ -121,6 +120,7 @@ exports.getAllContentTypes = async() => {
         return result;
 }
 exports.updateDataForContentType = async(data,dataId) => {
+        console.log(data,dataId)
         const result = await db.collection.update({
             data:data},{
             where:{
