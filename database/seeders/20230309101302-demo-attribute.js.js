@@ -11,7 +11,23 @@ module.exports = {
         attributeId:'424a1e62-be63-11ed-afa1-0242ac120002',
         createdAt: new Date(),
         updatedAt: new Date()
-     }], {});
+     },{
+      name: 'Country',
+      type: 'string',
+      contentTypeId: 'cc6fc2a0-be58-11ed-afa1-0242ac120002',
+      attributeId:'424a1e62-be63-11ed-afa1-0242ac120001',
+      createdAt: new Date(),
+      updatedAt: new Date()
+   },{
+    name: 'Age',
+    type: 'number',
+    contentTypeId: 'cc6fc2a0-be58-11ed-afa1-0242ac120002',
+    attributeId:'424a1e62-be63-11ed-afa1-0242ac120003',
+    createdAt: new Date(),
+    updatedAt: new Date()
+ }
+
+    ], {});
     
   },
 
