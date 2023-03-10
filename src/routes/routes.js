@@ -6,7 +6,7 @@ router.route('/data/:contentId').get(validateRequestParams,dataControllers.getAl
                                 .post(validateRequestParams,dataControllers.setDataForContentType)
 router.route('/data/:collectionId').put(validateRequestParams,dataControllers.updateDataForContentType)
                                    .delete(validateRequestParams,dataControllers.deleteCollection);
-router.route('/create-content-type').post(validateRequest(validationSchemas.validateContentType),dataControllers.createContentType);
+router.route('/create-content-type').post(dataControllers.createContentType);
 router.route('/create-attribute/:contentId').post(validateRequestParams,dataControllers.createAttribute);
 router.route('/update-content-type/:contentId').put(validateRequestParams,dataControllers.updateContentType);
 router.route('/update-attribute/:attributeId/:contentId').put(validateRequestParams,dataControllers.updateAttribute);

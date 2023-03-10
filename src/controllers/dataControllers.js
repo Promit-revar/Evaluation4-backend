@@ -10,7 +10,7 @@ exports.getAllDataByContentId = async(req,res) => {
 }
 exports.setDataForContentType = async(req,res) => {
     try{
-      
+        console.log(req.body);
         const result = await dataServices.setDataForContentId(req.body,req.params.contentId);
         res.status(201).json(result);
     }

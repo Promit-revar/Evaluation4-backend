@@ -18,14 +18,12 @@ exports.setDataForContentId = async(data,contentId) => {
                 contentTypeId:contentId
             }
         });
+       
         attributes.forEach(attribute => {
             if(!data[attribute.name]){
                 data[attribute.name] = null;
-            }
-            else if(data[attribute.name] && typeof(data[attribute.name]) !== attribute.type)
-            {
-                throw new Error(`Attribute ${attribute.name} should be of type ${attribute.type}`);
-            }
+            } 
+           
         });
         const result = await db.collection.create({
             data:data,
@@ -78,7 +76,6 @@ exports.updateContentType = async(data,contentId) => {
         return result;
 }
 exports.updateAttribute = async(data,attributeId,contentId) => {
-        console.log(contentId);
         const previousAttribute = await db.Attribute.findOne({
             where:{
                 attributeId:attributeId
